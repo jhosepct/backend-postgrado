@@ -10,12 +10,12 @@ export class Document {
     tesis: Tesis
 
     @Column({ type: 'bytea', nullable: true })
-    file: Buffer;    
+    file: Buffer;
 
     ToJSON() {
         return {
             id: this.id,
-            file: this.file
+            file: this.file.toString('base64')
         }
     }
 

@@ -5,6 +5,7 @@ import { Tesis } from './tesis.entity';
 import { CreateFaseUnoDto } from './dto/create-fase-uno.dto';
 import { User } from 'src/users/users.entity';
 import { Document } from 'src/documents/documents.entity';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
 export class TesisService {
@@ -14,10 +15,11 @@ export class TesisService {
         @InjectRepository(Document) private documentsRepository: Repository<Document>,
     ) { }
 
-    async createFaseUno(data: CreateFaseUnoDto) {
-        const userCreate = this.usersRepository.create(data.user);
-
+    async createFaseUno(userData: CreateUserDto, file: Express.Multer.File) {
+        console.log(userData, file);
+        const userCreate = this.usersRepository.create(userData);
         const user = await this.usersRepository.save(userCreate);
+
         const tesisCreate = this.tesisRepository.create({
             user: user,
         });
@@ -25,12 +27,12 @@ export class TesisService {
 
         const document = this.documentsRepository.create({
             tesis: tesis,
-            file: data.file,
+            file: file.buffer, // Usa directamente el buffer del archivo
         });
         await this.documentsRepository.save(document);
-        return this.tesisRepository.save(tesis);
+        return tesis;
     }
-
+    
     async createFaseUnoWithIdUser(data: any, id: number) {
          const user = await this.usersRepository.findOne({where: {id}});
          
