@@ -10,13 +10,12 @@ export class Document {
     tesis: Tesis
 
     @Column({ type: 'bytea', nullable: true })
-    fileName: Buffer;    
+    file: Buffer;    
 
     ToJSON() {
         return {
             id: this.id,
-            tesis: this.tesis,
-            fileName: this.fileName
+            file: this.file
         }
     }
 

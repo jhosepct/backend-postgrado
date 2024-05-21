@@ -1,0 +1,14 @@
+{
+    "user": {
+        "name": "",
+        "lastName": "",
+        "email": "",
+        "dni": "",
+        "codeInts": "",
+        "phone": "",
+        "gender": ""
+    },
+    "document":{
+        "file": ""
+    }
+}

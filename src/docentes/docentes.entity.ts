@@ -45,8 +45,6 @@ export class Docente {
 
     @OneToMany(() => Revisor, (revisor) => revisor.docente)
     revisores: Revisor[]
-    
-
     ToJSON() {
         return {
             name: this.name,

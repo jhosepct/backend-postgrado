@@ -11,9 +11,6 @@ export class Tesis {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    registrationDate: Date;
-
     @Column({ nullable: true, length: 300 })
     name: string;
 
