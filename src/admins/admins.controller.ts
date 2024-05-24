@@ -17,8 +17,8 @@ export class AdminsController {
     constructor(private adminsService: AdminsService) { }
 
     @Post()
-    @Roles(Role.Admin)
-    @UseGuards(JwtAuthGuard, RolesGuard)
+    //@Roles(Role.Admin)
+    //@UseGuards(JwtAuthGuard, RolesGuard)
     @ApiOperation({ summary: 'Crear un nuevo administrador' })
     @ApiResponse({ status: 201, description: 'El administrador ha sido creado exitosamente', type: Admin })
     @ApiBearerAuth()

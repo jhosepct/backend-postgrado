@@ -19,8 +19,15 @@ export class RevisoresService {
         return this.juradoRepository.save(newRevisor);
     }
 
-    getRevisors() {
-        return this.juradoRepository.find();
+    async getRevisors() {
+        const jurados = await this.juradoRepository.find({ relations: ["docente"] });
+
+
+        const response = jurados.map((jurado) => {
+            return jurado.docente.ToJSON();
+        });
+
+        return response;
     }
 
     async getRevisor(id: number) {

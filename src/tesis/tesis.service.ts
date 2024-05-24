@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tesis } from './tesis.entity';
@@ -6,6 +6,9 @@ import { CreateFaseUnoDto } from './dto/create-fase-uno.dto';
 import { User } from 'src/users/users.entity';
 import { Document } from 'src/documents/documents.entity';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateFaseDosDto } from './dto/create-fase-dos.dto';
+import { Asesor } from 'src/asesores/asesores.entity';
+import { Docente } from 'src/docentes/docentes.entity';
 
 @Injectable()
 export class TesisService {
@@ -13,6 +16,10 @@ export class TesisService {
         @InjectRepository(Tesis) private tesisRepository: Repository<Tesis>,
         @InjectRepository(User) private usersRepository: Repository<User>,
         @InjectRepository(Document) private documentsRepository: Repository<Document>,
+        @InjectRepository(Asesor) private asesoresRepository: Repository<Asesor>,
+        @InjectRepository(Docente) private docentesRepository: Repository<Docente>,
+
+
     ) { }
 
     async createFaseUno(userData: CreateUserDto, file: Express.Multer.File) {
@@ -32,6 +39,28 @@ export class TesisService {
         await this.documentsRepository.save(document);
         return tesis;
     }
+
+    async createSecondTwo(body: CreateFaseDosDto) {
+        const tesis = await this.tesisRepository.findOne({ where: { user: { id: body.userId } } });
+        
+        if (!tesis) throw new HttpException('Tesis or User not found', HttpStatus.NOT_FOUND);
+
+        const docente = await this.docentesRepository.findOne({ where: { id: body.docenteId } });
+
+        if(!docente) throw new HttpException('Docente not found', HttpStatus.NOT_FOUND);
+
+        const asesor = this.asesoresRepository.create({
+            docente: docente,
+        })
+
+        const asesorSave = await this.asesoresRepository.save(asesor);
+
+        tesis.asesor = asesorSave;
+
+        return this.tesisRepository.save(tesis);
+        
+            
+    }   
     
     async createFaseUnoWithIdUser(data: any, id: number) {
          const user = await this.usersRepository.findOne({where: {id}});

@@ -8,6 +8,7 @@ import { Role } from 'src/utils/enum/roles.enum';
 import { CreateRevisorDto } from './dto/create-revisor.dto';
 import { Revisor } from './revisores.entity';
 import { UpdateRevisorDto } from './dto/update-revisor.dto';
+import { ResponseRevisorDto } from './dto/response-revisor.dto';
 
 @ApiBearerAuth()
 @ApiTags('revisores')
@@ -26,10 +27,10 @@ export class RevisoresController {
 
     @Get()
     @ApiOperation({ summary: 'Obtener todos los revisors' })
-    @ApiResponse({ status: 200, description: 'Lista de revisors', type: [Revisor] })
+    @ApiResponse({ status: 200, description: 'Lista de revisors', type: [ResponseRevisorDto] })
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(Role.Admin)
-    getRevisors(): Promise<Revisor[]> {
+    getRevisors(): Promise<ResponseRevisorDto[]> {
         return this.revisoresService.getRevisors();
     }
 

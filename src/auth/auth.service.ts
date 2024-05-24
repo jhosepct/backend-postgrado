@@ -33,7 +33,7 @@ export class AuthService {
             httpOnly: true,
             secure: false,
             sameSite: 'strict',
-            maxAge: 1000 * 60 * 60 * 24 * 1,
+            maxAge: 365 * 24 * 60 * 60 * 1000,
             path: '/',
         });
         throw new HttpException(userFound.ToJSON(), HttpStatus.OK)

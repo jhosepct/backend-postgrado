@@ -9,6 +9,7 @@ import { Role } from 'src/utils/enum/roles.enum';
 import { CreateFaseUnoDto } from './dto/create-fase-uno.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateFaseDosDto } from './dto/create-fase-dos.dto';
 
 @Controller('tesis')
 export class TesisController {
@@ -37,5 +38,16 @@ export class TesisController {
         const user: CreateUserDto = JSON.parse(body.user);
         return this.tesisService.createFaseUno(user, file);
     }
+
+    @Post('second-phase')
+    @ApiOperation({ summary: 'Crear primera fase' })
+    @ApiResponse({ status: 201, description: 'Fase uno creada', type: Tesis })
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles(Role.Admin)
+    async createSecondPhase(@Body() body: CreateFaseDosDto) {
+        return this.tesisService.createSecondTwo(body);
+    }
+
+
 
 }

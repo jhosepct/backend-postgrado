@@ -24,7 +24,7 @@ export class Tesis {
     fase: Fase
 
     @ManyToOne(() => Asesor, (asesor) => asesor.tesis)
-    asesor: Fase
+    asesor: Asesor
    
     @CreateDateColumn({ type: "timestamp" })
     created_at: Date;

@@ -10,6 +10,7 @@ import { Jurado } from './jurados.entity';
 import { Request as Req } from 'express';
 import { CreateJuradoDto } from './dto/create-jurado.dto';
 import { UpdateJuradoDto } from './dto/update-jurado.dto';
+import { ResponseJuradoDto } from './dto/response-jurado.dto';
 
 @ApiBearerAuth()
 @ApiTags('jurados')
@@ -28,10 +29,10 @@ export class JuradosController {
 
     @Get()
     @ApiOperation({ summary: 'Obtener todos los jurados' })
-    @ApiResponse({ status: 200, description: 'Lista de jurados', type: [Jurado] })
+    @ApiResponse({ status: 200, description: 'Lista de jurados', type: [ResponseJuradoDto] })
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(Role.Admin)
-    getJurados(): Promise<Jurado[]> {
+    getJurados(): Promise<ResponseJuradoDto[]> {
         return this.juradosService.getJurados();
     }
 

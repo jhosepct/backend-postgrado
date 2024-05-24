@@ -8,6 +8,7 @@ import { Role } from 'src/utils/enum/roles.enum';
 import { CreateAsesorDto } from './dto/create-asesor.dto';
 import { Asesor } from './asesores.entity';
 import { UpdateAsesorDto } from './dto/update-asesor.dto';
+import { ResponseAsesorDto } from './dto/response-asesor.dto';
 
 @ApiBearerAuth()
 @ApiTags('asesores')
@@ -26,10 +27,10 @@ export class AsesoresController {
 
     @Get()
     @ApiOperation({ summary: 'Obtener todos los asesors' })
-    @ApiResponse({ status: 200, description: 'Lista de asesors', type: [Asesor] })
+    @ApiResponse({ status: 200, description: 'Lista de asesors', type: [ResponseAsesorDto] })
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(Role.Admin)
-    getAsesors(): Promise<Asesor[]> {
+    getAsesors(): Promise<ResponseAsesorDto[]> {
         return this.asesoresService.getAsesors();
     }
 
