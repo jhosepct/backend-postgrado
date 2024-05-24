@@ -44,6 +44,15 @@ export class UsersController {
         return this.usersService.getUser(request);
     }
 
+    @Get(':id')
+    @ApiOperation({ summary: 'Obtener un usuario por su ID' })
+    @ApiResponse({ status: 200, description: 'Perfil del usuario' })
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles(Role.Admin)
+    getUserById(@Param('id', ParseIntPipe) id: number) {
+        return this.usersService.getUserById(id);
+    }
+
     @Delete(':id')
     @ApiOperation({ summary: 'Eliminar un usuario por su ID' })
     @ApiResponse({ status: 200, description: 'El usuario ha sido eliminado exitosamente' })

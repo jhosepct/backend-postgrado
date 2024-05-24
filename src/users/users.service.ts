@@ -40,6 +40,12 @@ export class UsersService {
         return userFound.ToJSON();
     }
 
+    async getUserById(id: number) {
+        const userFound = await this.userRepository.findOneBy({ id });
+        if (!userFound) throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        return userFound;
+    }
+
     async deleteUser(id: number) {
         const result = await this.userRepository.delete(id);
         if (result.affected === 0) throw new HttpException('User not found', HttpStatus.NOT_FOUND);

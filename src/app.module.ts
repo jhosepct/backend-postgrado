@@ -69,7 +69,7 @@ import { Sustentacion } from './sustentaciones/sustentaciones.entity';
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => ({
         type: 'postgres',
-        url: configService.DATABASE_URL_LOCAL,
+        url: configService.DATABASE_URL,
         entities: [Admin, User, Tesis, Document, Fase, Jurado, Docente, LineaInvestigacion, Periodo, Asesor, Revisor, Expedito, Intento, Sustentacion],
         synchronize: true,
         logging: true,
