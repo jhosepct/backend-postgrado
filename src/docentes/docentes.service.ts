@@ -5,19 +5,30 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDocenteDto } from './dto/create-docente.dto';
 import { Request } from 'express';
 import { UpdateDocenteDto } from './dto/update-docente.dto';
+import { LineaInvestigacion } from 'src/lineas-investigacion/lineas-investigacion.entity';
 
 @Injectable()
 export class DocentesService {
     constructor(
         @InjectRepository(Docente) private docenteRepository: Repository<Docente>,
-        //@InjectRepository(Admin) private adminRepository: Repository<Admin>,
+        @InjectRepository(LineaInvestigacion) private lineaInvestigacionRepository: Repository<LineaInvestigacion>,
     ) { }
 
     async createDocente(docente: CreateDocenteDto) {
         const docenteFound = await this.docenteRepository.findOneBy({ email: docente.email });
         if (docenteFound) throw new HttpException('Account exists', HttpStatus.CONFLICT);
 
-        const newDocente = this.docenteRepository.create(docente);
+        const lineaInvestigacion = await this.lineaInvestigacionRepository.findOneBy({ id: docente.lineaInvestigacion });
+        if (!lineaInvestigacion) throw new HttpException('Linea Investigacion not found', HttpStatus.NOT_FOUND);
+
+        const newDocente = this.docenteRepository.create({
+            name: docente.name,
+            lastname: docente.lastName,
+            email: docente.email,
+            dni: docente.dni,
+            grado: docente.grado,
+            lineaInvestigacion: lineaInvestigacion,
+        });
         return this.docenteRepository.save(newDocente);
     }
 

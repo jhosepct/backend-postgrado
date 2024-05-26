@@ -18,4 +18,5 @@ export class CreateDocenteDto {
     @IsString()
     @IsNotEmpty()
     readonly grado: string;
+    readonly lineaInvestigacion: number;
 }

@@ -34,7 +34,7 @@ export class TesisService {
 
         const document = this.documentsRepository.create({
             tesis: tesis,
-            file: file.buffer, // Usa directamente el buffer del archivo
+            file: null, //file.buffer,
         });
         await this.documentsRepository.save(document);
         return tesis;
@@ -58,9 +58,20 @@ export class TesisService {
         tesis.asesor = asesorSave;
 
         return this.tesisRepository.save(tesis);
-        
-            
-    }   
+      
+    }
+    
+    async getTesis() {
+        const tesis = await this.tesisRepository.find({ relations: ["user", "asesor", "asesor.docente", "asesor.docente.lineaInvestigacion", "asesor.docente.periodo", "asesor.docente.jurados", "asesor.docente.asesores", "asesor.docente.revisores"] });
+
+        console.log(tesis);
+
+        const response = tesis.map((tesi) => {
+            return tesi.ToJSON();
+        });
+
+        return tesis;
+    }
     
     async createFaseUnoWithIdUser(data: any, id: number) {
          const user = await this.usersRepository.findOne({where: {id}});

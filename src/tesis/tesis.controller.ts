@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { TesisService } from './tesis.service';
 import { ApiBody, ApiConsumes, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Tesis } from './tesis.entity';
@@ -47,7 +47,13 @@ export class TesisController {
     async createSecondPhase(@Body() body: CreateFaseDosDto) {
         return this.tesisService.createSecondTwo(body);
     }
-
-
+    @Get()
+    @ApiOperation({ summary: 'Lista de tesis' })
+    @ApiResponse({ status: 201, description: 'Lista de tesis', type: Tesis })
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles(Role.Admin)
+    async getTesis() {
+        return this.tesisService.getTesis();
+    }
 
 }
