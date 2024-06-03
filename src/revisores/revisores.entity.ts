@@ -1,6 +1,7 @@
 import { Docente } from "src/docentes/docentes.entity";
 import { Tesis } from "src/tesis/tesis.entity";
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne,PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne,OneToMany,PrimaryGeneratedColumn } from "typeorm";
+import { TesisToRevisores } from "./tesisToRevisores.entity";
 
 @Entity({ name: 'revisores' })
 export class Revisor {
@@ -10,9 +11,8 @@ export class Revisor {
     @ManyToOne(() => Docente, (docente) => docente.revisores)
     docente: Docente
 
-    @ManyToMany(() => Tesis)
-    @JoinTable()
-    tesis: Tesis[]
+    @OneToMany(() => TesisToRevisores, questionToCategory => questionToCategory.revisor)
+    tesisToRevisores: TesisToRevisores[];
 
     @Column({ nullable: true })
     description: string;

@@ -12,6 +12,8 @@ export class Fase {
     @Column({ nullable: true })
     description: string;
 
+    @Column()
+    fase: number;
 
     @OneToMany(() => Tesis, (tesis) => tesis.fase)
     tesis: Tesis[]

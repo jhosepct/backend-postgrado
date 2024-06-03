@@ -47,11 +47,13 @@ import { Tesis } from './tesis/tesis.entity';
 import { Document } from './documents/documents.entity';
 import { Fase } from './fases/fases.entity';
 import { Jurado } from './jurados/jurados.entity';
+import { Acta } from './tesis/acta.entity';
 import { Docente } from './docentes/docentes.entity';
 import { LineaInvestigacion } from './lineas-investigacion/lineas-investigacion.entity';
 import { Periodo } from './periodos/periodos.entity';
 import { Asesor } from './asesores/asesores.entity';
 import { Revisor } from './revisores/revisores.entity';
+import { TesisToRevisores } from './revisores/tesisToRevisores.entity';
 import { Expedito } from './expeditos/expeditos.entity';
 import { Intento } from './intentos/intentos.entity';
 import { Sustentacion } from './sustentaciones/sustentaciones.entity';
@@ -69,8 +71,8 @@ import { Sustentacion } from './sustentaciones/sustentaciones.entity';
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => ({
         type: 'postgres',
-        url: configService.DATABASE_URL,
-        entities: [Admin, User, Tesis, Document, Fase, Jurado, Docente, LineaInvestigacion, Periodo, Asesor, Revisor, Expedito, Intento, Sustentacion],
+        url: configService.DATABASE_URL_LOCAL,
+        entities: [Admin, User, Acta, Tesis, Document, Fase, Jurado, Docente, LineaInvestigacion, Periodo, Asesor, Revisor, Expedito, Intento, Sustentacion, TesisToRevisores],
         synchronize: true,
         logging: true,
       })
@@ -88,6 +90,7 @@ import { Sustentacion } from './sustentaciones/sustentaciones.entity';
     AsesoresModule,
     RevisoresModule,
     ExpeditosModule,
+    FasesModule,
     IntentosModule,
     SustentacionesModule],
   controllers: [AppController],

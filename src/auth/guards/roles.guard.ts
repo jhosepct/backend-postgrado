@@ -14,6 +14,7 @@ export class RolesGuard implements CanActivate {
         ]);
 
         if (!requiredRoles) return true;
+        console.log("-.-.-.");
         console.log(requiredRoles[0].split(','));
 
         const { user, params } = context.switchToHttp().getRequest();
@@ -25,7 +26,7 @@ export class RolesGuard implements CanActivate {
 
             return requiredRoles[0].split(',')[0] === user.role || requiredRoles[0].split(',')[1] === user.role;
         }
-        if (params && params.id) return requiredRoles[0] === user.role && parseInt(params.id) === user.userId;
+        //if (params && params.id) return requiredRoles[0] === user.role && parseInt(params.id) === user.userId;
 
 
         return requiredRoles[0] === user.role;
