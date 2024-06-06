@@ -1,10 +1,9 @@
 {
-  "name": "xtremix-api",
-  "version": "0.0.1",
+  "name": "cattleya-backend-uncp",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "kevin",
   "private": true,
-  "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
