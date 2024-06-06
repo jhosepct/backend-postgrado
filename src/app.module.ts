@@ -71,7 +71,7 @@ import { Sustentacion } from './sustentaciones/sustentaciones.entity';
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => ({
         type: 'postgres',
-        url: configService.DATABASE_URL_LOCAL,
+        url: configService.DATABASE_URL,
         //dropSchema: true, 
         entities: [Admin, User, Tesis, Document, Fase, Jurado, Docente, LineaInvestigacion, Periodo, Asesor, Revisor, Expedito, Intento, Sustentacion, TesisToRevisores,Acta],
         synchronize: true,

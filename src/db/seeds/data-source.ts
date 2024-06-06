@@ -4,7 +4,7 @@ import { SeederOptions } from 'typeorm-extension';
 
 const options: DataSourceOptions & SeederOptions = {
     type: 'postgres',
-    url: process.env.DATABASE_URL_LOCAL,
+    url: process.env.DATABASE_URL,
     entities: ['dist/**/*.entity.js'],
     seeds: [
         'dist/db/seeds/docente.seeder.js',
