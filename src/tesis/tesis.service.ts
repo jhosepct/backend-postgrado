@@ -57,8 +57,8 @@ export class TesisService {
         const s3 = new S3Client({
             region: miRegion,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_CLIENT,
+                accessKeyId: process.env.ACCESS_KEY,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY_CLIENT,
             },
         });
 
@@ -173,8 +173,8 @@ export class TesisService {
         const s3 = new S3Client({
             region: miRegion,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_CLIENT,
+                accessKeyId: process.env.ACCESS_KEY,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY_CLIENT,
             },
         });
 
@@ -197,12 +197,12 @@ export class TesisService {
 
         // Enviamos mensajes para cada uno de los docentes con el documento: 
         const transporter = nodemailer.createTransport({
-            host: process.env.AWS_EMAIL_HOST,
-            port: process.env.AWS_EMAIL_PORT,
+            host: process.env.EMAIL_HOST,
+            port: process.env.EMAIL_PORT,
             secure: false,
             auth: {
-                user: process.env.AWS_EMAIL_USER,
-                pass: process.env.AWS_EMAIL_PASS,
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             },
         } as nodemailer.TransportOptions);
 
@@ -217,7 +217,7 @@ export class TesisService {
 
         try {
             const info = await transporter.sendMail({
-                from: process.env.AWS_EMAIL_SENDER,
+                from: process.env.EMAIL_SENDER,
                 to: `${docente1.email},${docente2.email},${docente3.email}`,
                 subject: `<strong>Postgrado UNCP</strong> Borrador de tesis de estudiante - ${user.name}`, // Subject line
                 text: "Hello world?", // plain text body
@@ -255,8 +255,8 @@ export class TesisService {
         const s3 = new S3Client({
             region: miRegion,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_CLIENT,
+                accessKeyId: process.env.ACCESS_KEY,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY_CLIENT,
             },
         });
 
@@ -296,12 +296,12 @@ export class TesisService {
 
         //Envio de correo al usuario
         const transporter = nodemailer.createTransport({
-            host: process.env.AWS_EMAIL_HOST,
-            port: parseInt(process.env.AWS_EMAIL_PORT, 10),
+            host: process.env.EMAIL_HOST,
+            port: parseInt(process.env.EMAIL_PORT, 10),
             secure: false,
             auth: {
-                user: process.env.AWS_EMAIL_USER,
-                pass: process.env.AWS_EMAIL_PASS,
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             },
         } as nodemailer.TransportOptions);
 
@@ -311,7 +311,7 @@ export class TesisService {
 
         try {
             const info = await transporter.sendMail({
-                from: process.env.AWS_EMAIL_SENDER,
+                from: process.env.EMAIL_SENDER,
                 to: `${user.email}`,
                 subject: "<strong>Postgrado UNCP</strong> Revisión de los revisores",
                 text: "<strong>Postgrado UNCP</strong>",
@@ -351,8 +351,8 @@ export class TesisService {
         const s3 = new S3Client({
             region: miRegion,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_CLIENT,
+                accessKeyId: process.env.ACCESS_KEY,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY_CLIENT,
             },
         });
 
@@ -396,18 +396,18 @@ export class TesisService {
 
     async sendMessage() {
         const transporter = nodemailer.createTransport({
-            host: process.env.AWS_EMAIL_HOST,
-            port: parseInt(process.env.AWS_EMAIL_PORT, 10),
+            host: process.env.EMAIL_HOST,
+            port: parseInt(process.env.EMAIL_PORT, 10),
             secure: false,
             auth: {
-                user: process.env.AWS_EMAIL_USER,
-                pass: process.env.AWS_EMAIL_PASS,
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             },
         } as nodemailer.TransportOptions);
 
         try {
             const info = await transporter.sendMail({
-                from: process.env.AWS_EMAIL_SENDER, // sender address
+                from: process.env.EMAIL_SENDER, // sender address
                 to: "e_2019200649G@uncp.edu.pe, kevinjhosepct@gmail.com", // list of receivers
                 subject: "Hello ✔", // Subject line
                 text: "Hello world?", // plain text body
@@ -436,8 +436,8 @@ export class TesisService {
         const s3 = new S3Client({
             region: miRegion,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_CLIENT,
+                accessKeyId: process.env.ACCESS_KEY,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY_CLIENT,
             },
         });
 
@@ -495,8 +495,8 @@ export class TesisService {
         const s3 = new S3Client({
             region: miRegion,
             credentials: {
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_CLIENT,
+                accessKeyId: process.env.ACCESS_KEY,
+                secretAccessKey: process.env.SECRET_ACCESS_KEY_CLIENT,
             },
         });
 
@@ -539,12 +539,12 @@ export class TesisService {
         // Envio de correo al usuario
 
         const transporter = nodemailer.createTransport({
-            host: process.env.AWS_EMAIL_HOST,
-            port: parseInt(process.env.AWS_EMAIL_PORT, 10),
+            host: process.env.EMAIL_HOST,
+            port: parseInt(process.env.EMAIL_PORT, 10),
             secure: false,
             auth: {
-                user: process.env.AWS_EMAIL_USER,
-                pass: process.env.AWS_EMAIL_PASS,
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             },
         } as nodemailer.TransportOptions);
 
@@ -554,7 +554,7 @@ export class TesisService {
 
         try {
             const info = await transporter.sendMail({
-                from: process.env.AWS_EMAIL_SENDER,
+                from: process.env.EMAIL_SENDER,
                 to: `${user.email}`,
                 subject: "<strong>Postgrado UNCP</strong> Acta de sustentación",
                 text: "<strong>Postgrado UNCP</strong>",
