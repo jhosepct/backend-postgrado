@@ -48,6 +48,8 @@ export class TesisService {
 
         const fase = await this.fasesRepository.findOneBy({ fase: 1 });
 
+        if(!fase) return new HttpException('Fase not found', HttpStatus.NOT_FOUND);
+
         const bucket = 'postgrado-uncp';
         const carpetaInternaBucket = `documents/tesis/${user.id}/document`;
         const miRegion = 'us-east-2';
@@ -480,7 +482,8 @@ export class TesisService {
     }
 
     async createActa(userId: number, file: Express.Multer.File) {
-        const tesis = await this.tesisRepository.findOne({ where: { user: { id: userId } } , relations: ["susentacion"]});
+        const tesis = await this.tesisRepository.findOne({ where: { user: { id: userId } } });
+        console.log(tesis);
 
         if (!tesis) throw new HttpException('Tesis or User not found', HttpStatus.NOT_FOUND);
 
@@ -634,6 +637,7 @@ export class TesisService {
                 asesor: true,
                 expedito: true,
                 fase: true,
+                acta: true
             }
         });
 

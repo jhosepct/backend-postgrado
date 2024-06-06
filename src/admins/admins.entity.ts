@@ -24,6 +24,9 @@ export class Admin {
     @Column({ nullable: true, length: 8 })
     dni: string;
 
+    @Column({ nullable: true })
+    gender: Gender;
+
     @CreateDateColumn({ type: "timestamp" })
     created_at: Date;
 

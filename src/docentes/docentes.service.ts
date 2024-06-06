@@ -33,7 +33,7 @@ export class DocentesService {
     }
 
     getDocentes() {
-        return this.docenteRepository.find();
+        return this.docenteRepository.find({relations: ["lineaInvestigacion"]  });
     }
 
     async getDocente(id: number) {

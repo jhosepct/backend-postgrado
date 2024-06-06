@@ -3,29 +3,30 @@ import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { Docente } from 'src/docentes/docentes.entity';
 import { LineaInvestigacion } from 'src/lineas-investigacion/lineas-investigacion.entity';
+import { Fase } from 'src/fases/fases.entity';
+import { Intento } from 'src/intentos/intentos.entity';
 
-export default class LineaInvestigacionSeeder implements Seeder {
+export default class IntentosSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<void> {
     //await dataSource.query('TRUNCATE "lineasInvestigacion" RESTART IDENTITY');
 
-    const repository = dataSource.getRepository(LineaInvestigacion);
-    await repository.insert({
-        name: 'Tecnologias de la Informacion'
-    });
 
-    await repository.insert({
-        name: 'Ingenieria de Software'
-    });
+      const repositoryIntentos = dataSource.getRepository(Intento);
+      
+      await repositoryIntentos.insert({
+        number: 1
+      });
 
-    await repository.insert({
-        name: 'Inteligencia Artificial'
-    });
+      await repositoryIntentos.insert({
+        number: 2
+      });
 
-    await repository.insert({
-        name: 'Sistemas Complejos'
-    });
+      await repositoryIntentos.insert({
+        number: 3
+      });
+    
   }
 }

@@ -2,7 +2,7 @@ import { Document } from "src/documents/documents.entity";
 import { Tesis } from "src/tesis/tesis.entity";
 import { CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity({ name: 'tesis' })
+@Entity({ name: 'acta' })
 export class Acta {
     @PrimaryGeneratedColumn()
     id: number;

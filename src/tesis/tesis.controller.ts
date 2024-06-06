@@ -150,7 +150,7 @@ export class TesisController {
         return this.tesisService.createSupportDate(createSupportDateDto, file);
     }
 
-    @Post('support-date')
+    @Post('create-acta')
     @ApiOperation({ summary: 'Listar Revisores' })
     @ApiResponse({ status: 201, description: 'Lista de revisores', type: [Tesis] })
     @UseGuards(JwtAuthGuard, RolesGuard)

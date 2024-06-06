@@ -72,11 +72,12 @@ import { Sustentacion } from './sustentaciones/sustentaciones.entity';
       useFactory: (configService: ConfigType<typeof config>) => ({
         type: 'postgres',
         url: configService.DATABASE_URL_LOCAL,
-        entities: [Admin, User, Acta, Tesis, Document, Fase, Jurado, Docente, LineaInvestigacion, Periodo, Asesor, Revisor, Expedito, Intento, Sustentacion, TesisToRevisores],
+        //dropSchema: true, 
+        entities: [Admin, User, Tesis, Document, Fase, Jurado, Docente, LineaInvestigacion, Periodo, Asesor, Revisor, Expedito, Intento, Sustentacion, TesisToRevisores,Acta],
         synchronize: true,
         logging: true,
       })
-    }),
+    }), 
     AuthModule,
     AdminsModule,
     UsersModule,

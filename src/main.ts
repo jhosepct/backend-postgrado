@@ -8,8 +8,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .addBearerAuth()
-    .setTitle('NestJS API')
-    .setDescription('The NestJS API description')
+    .setTitle('Postgrado uncp')
+    .setDescription('Hacer el seguimiento de estudiantes de la facultad de ingeniería de sistemas de la universidad UNCP')
     .setVersion('1.0')
     .addTag('NestJS')
     .build();

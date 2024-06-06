@@ -22,6 +22,9 @@ export class Docente {
     @Column({ nullable: true, length: 8 })
     dni: string;
 
+    @Column({ nullable: true })
+    lineaInvestigacionId: number;   
+
     @ManyToOne(() => LineaInvestigacion, (lineaInvestigacion) => lineaInvestigacion.docentes)
     lineaInvestigacion: LineaInvestigacion
         
